@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anticoagulação Oral — USF São Julião</title>
+<style>
+:root{
+  --green:#087a4b; --green2:#0a5f3e; --mint:#eaf6f0; --ink:#17211d; --muted:#61706a;
+  --line:#d9e2de; --bg:#f5f8f6; --card:#fff; --amber:#9a6200; --amberbg:#fff7df;
+  --red:#a52222; --redbg:#fff0f0; --blue:#245b86; --bluebg:#eef6fc; --shadow:0 6px 20px rgba(10,40,26,.06)
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,var(--green2),var(--green));color:#fff;padding:18px 22px}
+header .wrap{max-width:1180px;margin:auto}
+h1{font-size:23px;margin:0 0 2px}
+header p{margin:0;opacity:.92}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+.notice{background:#fff;border:1px solid var(--line);border-left:5px solid var(--green);border-radius:10px;padding:10px 12px;margin-bottom:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:9px 14px;cursor:pointer;font-weight:700}
+.tab.active{background:var(--green);border-color:var(--green);color:#fff}
+.panel{display:none}.panel.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.card h2{font-size:18px;margin:0 0 10px}.card h3{font-size:15px;margin:12px 0 8px}
+.span12{grid-column:span 12}.span8{grid-column:span 8}.span7{grid-column:span 7}.span6{grid-column:span 6}.span5{grid-column:span 5}.span4{grid-column:span 4}
+.field{margin-bottom:9px}.field label{display:block;font-weight:650;margin-bottom:4px}
+input,select,textarea{width:100%;border:1px solid #bcc9c3;border-radius:8px;padding:8px 9px;background:#fff;color:var(--ink);font:inherit}
+input[type=checkbox],input[type=radio]{width:auto;margin-right:6px}
+.inline{display:flex;gap:9px;align-items:end;flex-wrap:wrap}.inline>.field{flex:1;min-width:140px}
+.check{display:block;margin:6px 0}
+button{border:0;border-radius:9px;padding:9px 13px;font-weight:750;cursor:pointer;background:var(--green);color:#fff}
+button.secondary{background:#fff;color:var(--green2);border:1px solid var(--green)}
+button.ghost{background:#eef3f0;color:#23352d}
+.result{margin-top:11px;border-radius:10px;padding:11px 12px;border:1px solid var(--line);background:#fafcfb}
+.result:empty{display:none}
+.ok{border-left:5px solid var(--green);background:var(--mint)}
+.warn{border-left:5px solid #d69a25;background:var(--amberbg)}
+.danger{border-left:5px solid #c53b3b;background:var(--redbg)}
+.info{border-left:5px solid #4a88b8;background:var(--bluebg)}
+.small{font-size:12px;color:var(--muted)}
+.big{font-size:24px;font-weight:800;color:var(--green2)}
+.kpi{display:flex;gap:10px;flex-wrap:wrap}.kpi>div{background:#f4f8f6;padding:9px 11px;border-radius:9px;min-width:140px}
+table{width:100%;border-collapse:collapse;margin-top:8px}th,td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}th{font-size:12px;color:#496057}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.week .field{text-align:center}.week label{font-size:12px}.week input{text-align:center}
+.badge{display:inline-block;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:750;background:#eaf6f0;color:var(--green2)}
+.badge.amber{background:#fff1cc;color:#835300}.badge.red{background:#ffe0e0;color:#8c1f1f}
+.timeline{border-left:3px solid #b8cec3;margin:8px 0 0 6px;padding-left:14px}.event{position:relative;margin:0 0 12px}.event:before{content:"";position:absolute;left:-20px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--green)}
+details{border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px 11px;margin-top:10px}summary{cursor:pointer;font-weight:750}
+hr{border:0;border-top:1px solid var(--line);margin:13px 0}
+.right{text-align:right}
+.hidden{display:none!important}
+footer{max-width:1180px;margin:8px auto 24px;padding:0 16px;color:var(--muted);font-size:12px}
+#patientPrint{display:none}
+.pill-icons{display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap;margin:0 auto}
+.pill-svg-round{width:28px;height:28px;vertical-align:middle}
+.dose-human{font-weight:750;font-size:14px;text-align:center}
+.schedule4w{width:100%;border-collapse:collapse;margin-top:10px}
+.schedule4w th,.schedule4w td{border:1px solid #bcc9c3;padding:6px 4px;text-align:center;vertical-align:top}
+.schedule4w th{background:#f4f8f6;color:#223831;font-size:12px}
+.schedule4w .rowhead{background:#f4f8f6;font-weight:800;white-space:nowrap;text-align:left}
+.schedule-dose{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:62px}
+.print-note{font-size:11pt;line-height:1.45}
+@media(max-width:850px){
+ .span8,.span7,.span6,.span5,.span4{grid-column:span 12}
+ .week{grid-template-columns:repeat(4,1fr)}
+}
+@media print{
+ body{background:#fff;font-size:12pt}
+ header,.wrap>*,footer{display:none!important}
+ #patientPrint{display:block!important;padding:0;margin:0;color:#000}
+ #patientPrint h1{font-size:20pt;color:#000;margin-bottom:6mm}
+ #patientPrint h2{font-size:15pt;margin-top:7mm}
+ #patientPrint .printbox{border:1px solid #555;padding:4mm;margin:4mm 0}
+ #patientPrint table{font-size:11pt}
+ @page{size:A4;margin:15mm}
+}
+</style>
+</head>
+<body>
+<style>@media print{.mgf-test-banner{display:none !important}}</style>
+<div class="mgf-test-banner" style="position:sticky;top:0;z-index:2147483647;background:#c00000;color:#fff;font:600 12.5px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;padding:6px 14px;">⚠️ Ferramenta em fase de teste — ainda sem validação institucional formal. Encontrou um erro ou tem uma sugestão? Contacte Miguel Ribeiro.</div>
+<header>
+  <div class="wrap">
+    <h1>Anticoagulação Oral — apoio à decisão</h1>
+    <p>USF São Julião · versão 0.15 para validação interna · 13/08/2026</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="notice">
+    <div class="inline" style="align-items:center">
+      <div style="flex:1;min-width:260px"><strong>Uso clínico:</strong> ferramenta offline, sem armazenamento ou transmissão de dados. Apoia — não substitui — a decisão clínica.
+      Confirme indicação, interações, RCM atual, função renal e instruções da equipa responsável pelo procedimento. <strong>Limpe os dados entre utentes.</strong></div>
+      <button class="secondary" type="button" onclick="location.reload()">Limpar todos os dados</button>
+    </div>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="warfarin">INR / Varfarina</button>
+    <button class="tab" data-tab="doac">Dose de DOAC</button>
+    <button class="tab" data-tab="switch">Switch</button>
+    <button class="tab" data-tab="periop">Procedimento / Cirurgia</button>
+    <button class="tab" data-tab="printcard">Folha para o utente — outros anticoagulantes</button>
+    <button class="tab" data-tab="about">Sobre / Referências</button>
+  </nav>
+
+  <!-- WARFARIN -->
+  <section id="warfarin" class="panel active">
+    <div class="grid">
+      <div class="card span5">
+        <h2>1. Avaliar o INR</h2>
+        <div class="inline">
+          <div class="field">
+            <label>INR atual</label>
+            <input id="wINR" type="number" min="0.5" max="20" step="0.1" placeholder="ex.: 1,8">
+          </div>
+          <div class="field">
+            <label>INR anterior (opcional)</label>
+            <input id="wPrevINR" type="number" min="0.5" max="20" step="0.1">
+          </div>
+        </div>
+        <div class="field">
+          <label>Alvo terapêutico</label>
+          <select id="wTarget">
+            <option value="2-3">2,0–3,0</option>
+            <option value="2.5-3.5">2,5–3,5</option>
+            <option value="custom">Personalizado</option>
+          </select>
+        </div>
+        <div id="wCustomTarget" class="inline hidden">
+          <div class="field"><label>Limite inferior</label><input id="wLow" type="number" step="0.1" value="2"></div>
+          <div class="field"><label>Limite superior</label><input id="wHigh" type="number" step="0.1" value="3"></div>
+        </div>
+        <div class="field">
+          <label>Hemorragia</label>
+          <select id="wBleed">
+            <option value="none">Não</option>
+            <option value="minor">Ligeira / clinicamente não significativa</option>
+            <option value="major">Clinicamente significativa, órgão crítico ou instabilidade</option>
+          </select>
+        </div>
+        <label class="check"><input id="wMissed" type="checkbox"> Há doses esquecidas / adesão irregular</label>
+        <label class="check"><input id="wTransient" type="checkbox"> Há causa transitória plausível (novo fármaco, infeção, dieta, álcool, diarreia/vómitos, etc.)</label>
+        <button onclick="analyseWarfarin()">Analisar INR</button>
+        <div id="wResult" class="result"></div>
+      </div>
+
+      <div class="card span7">
+        <h2>2. Dose semanal atual</h2>
+        <p class="small">Introduza o número de comprimidos de cada dia. O ajuste é calculado sobre a dose semanal total e depois distribuído de forma equilibrada ao longo da semana, tentando manter o esquema o mais regular e fácil possível.</p>
+        <div class="week" id="wCurrentWeek"></div>
+        <div class="inline">
+          <div class="field"><label>Ajuste a aplicar</label>
+            <select id="wPct">
+              <option value="-20">−20%</option><option value="-15">−15%</option><option value="-10">−10%</option>
+              <option value="-5">−5%</option><option value="0" selected>0%</option>
+              <option value="5">+5%</option><option value="10">+10%</option><option value="15">+15%</option><option value="20">+20%</option>
+            </select>
+          </div>
+          <button onclick="generateWarfarinSchedule()">Gerar esquema</button>
+        </div>
+        <div class="kpi">
+          <div><span class="small">Dose semanal atual</span><br><strong id="wTWD">0 comp.</strong></div>
+          <div><span class="small">Dose semanal proposta</span><br><strong id="wNewTWD">—</strong></div>
+          <div><span class="small">Variação real</span><br><strong id="wActualPct">—</strong></div>
+        </div>
+        <h3>Esquema proposto — editável</h3>
+        <div class="week" id="wProposedWeek"></div>
+        <div id="wScheduleNote" class="result info"></div>
+      </div>
+      <div class="card span12">
+        <h2>3. Plano para entregar ao utente</h2>
+        <p class="small">Usa o <strong>esquema proposto editável</strong> acima. A folha impressa mostra os dias da semana na horizontal, repetidos pelo número de semanas indicado a partir da data de início, com a data de calendário de cada dia (para reduzir o risco de confusão entre semanas) e representação visual em comprimidos inteiros, meios e quartos.</p>
+        <div class="inline">
+          <div class="field"><label>Data de início do esquema</label><input id="wStartDate" type="date"></div>
+          <div class="field"><label>Número de semanas a gerar</label><input id="wWeeksCount" type="number" min="1" max="12" step="1" value="4"></div>
+        </div>
+        <div class="inline">
+          <div class="field"><label>Nome (opcional)</label><input id="wPatientName" type="text"></div>
+          <div class="field"><label>Próxima análise ao sangue (opcional)</label><input id="wNextINR" type="date"></div>
+        </div>
+        <div class="field"><label>Indicação / motivo (opcional)</label><input id="wPatientInd" type="text" placeholder="ex.: fibrilhação auricular"></div>
+        <div class="field"><label>Instruções adicionais (opcional)</label><textarea id="wPatientNotes" rows="2"></textarea></div>
+        <button type="button" onclick="previewWarfarinPatientPlan()">Pré-visualizar</button>
+        <button type="button" class="secondary" onclick="printWarfarinPatientPlan()">Imprimir esquema e cuidados</button>
+        <div id="wPatientPreview" class="result info">Gere e confirme primeiro o novo esquema semanal.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOAC -->
+  <section id="doac" class="panel">
+    <div class="grid">
+      <div class="card span5">
+        <h2>Dados clínicos</h2>
+        <div class="inline">
+          <div class="field"><label>Idade (anos)</label><input id="dAge" type="number" min="18" max="110"></div>
+          <div class="field"><label>Sexo</label><select id="dSex"><option value="m">Masculino</option><option value="f">Feminino</option></select></div>
+        </div>
+        <div class="inline">
+          <div class="field"><label>Peso (kg)</label><input id="dWeight" type="number" min="25" max="300" step="0.1"></div>
+                    <div class="field"><label>Creatinina</label><input id="dCr" type="number" min="0.1" step="0.01"></div>
+          <div class="field"><label>Unidade</label><select id="dCrUnit"><option value="mg">mg/dL</option><option value="umol">µmol/L</option></select></div>
+        </div>
+        <div class="field"><label>Indicação / fase</label>
+          <select id="dInd">
+            <option value="af">Fibrilhação auricular não valvular</option>
+            <option value="vteacute">TVP/TEP — tratamento agudo</option>
+            <option value="vtemaint">TVP/TEP — tratamento após fase inicial</option>
+            <option value="vteextended">Prevenção de recorrência após ≥6 meses</option>
+          </select>
+        </div>
+        <div class="field"><label>Mostrar</label>
+          <select id="dDrug"><option value="all">Todos os DOAC</option><option value="apixaban">Apixabano</option><option value="rivaroxaban">Rivaroxabano</option><option value="dabigatran">Dabigatrano</option><option value="edoxaban">Edoxabano</option></select>
+        </div>
+        <div class="field"><label>Função hepática (Child-Pugh, se conhecida)</label>
+          <select id="dChild"><option value="">Não indicada</option><option value="A">A</option><option value="B">B</option><option value="C">C</option></select>
+        </div>
+        <label class="check"><input id="dVerapamil" type="checkbox"> Verapamil concomitante</label>
+        <label class="check"><input id="dEdoxPgp" type="checkbox"> Ciclosporina, dronedarona, eritromicina ou cetoconazol</label>
+        <label class="check"><input id="dHighBleed" type="checkbox"> Risco hemorrágico elevado</label>
+        <hr>
+        <label class="check"><input id="dMechanical" type="checkbox"> Prótese valvular mecânica</label>
+        <label class="check"><input id="dMS" type="checkbox"> Estenose mitral reumática moderada/grave</label>
+        <label class="check"><input id="dLVT" type="checkbox"> Trombo ventricular esquerdo</label>
+        <button onclick="calculateDOAC()">Calcular</button>
+      </div>
+      <div class="card span7">
+        <h2>Orientação</h2>
+        <div id="dCrClBox" class="result info">Introduza idade, sexo, peso e creatinina para calcular a <strong>depuração da creatinina pela fórmula de Cockcroft–Gault</strong>, usada nos ensaios pivotais e na maioria dos RCM dos anticoagulantes diretos.</div>
+        <div id="dResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWITCH -->
+  <section id="switch" class="panel">
+    <div class="grid">
+      <div class="card span5">
+        <h2>Alterar anticoagulante</h2>
+        <div class="field"><label>De</label>
+          <select id="sFrom">
+            <option value="vka">AVK (varfarina/acenocumarol)</option>
+            <option value="apixaban">Apixabano</option><option value="rivaroxaban">Rivaroxabano</option>
+            <option value="dabigatran">Dabigatrano</option><option value="edoxaban">Edoxabano</option>
+          </select>
+        </div>
+        <div class="field"><label>Para</label>
+          <select id="sTo">
+            <option value="apixaban">Apixabano</option><option value="rivaroxaban">Rivaroxabano</option>
+            <option value="dabigatran">Dabigatrano</option><option value="edoxaban">Edoxabano</option>
+            <option value="vka">AVK (varfarina/acenocumarol)</option>
+          </select>
+        </div>
+        <div class="field"><label>Indicação</label>
+          <select id="sInd"><option value="af">Fibrilhação auricular</option><option value="vte">TVP/TEP / prevenção de recorrência</option></select>
+        </div>
+        <div class="inline">
+          <div class="field"><label>INR atual (se aplicável)</label><input id="sINR" type="number" step="0.1"></div>
+          <div class="field"><label>Depuração da creatinina — Cockcroft–Gault (mL/min, se aplicável)</label><input id="sCrCl" type="number" step="1"></div>
+        </div>
+        <div id="sEdoxDoseField" class="field hidden"><label>Dose atual de edoxabano</label>
+          <select id="sEdoxDose"><option value="60">60 mg 1 vez por dia</option><option value="30">30 mg 1 vez por dia</option></select>
+        </div>
+        <button onclick="calculateSwitch()">Gerar instruções</button>
+      </div>
+      <div class="card span7">
+        <h2>Plano de switch</h2>
+        <div id="sResult" class="result info">Selecione o fármaco de origem e o fármaco de destino.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERIOP -->
+  <section id="periop" class="panel">
+    <div class="grid">
+      <div class="card span5">
+        <h2>Procedimento / cirurgia</h2>
+        <div class="field"><label>Anticoagulante</label>
+          <select id="pDrug">
+            <option value="warfarin">Varfarina</option><option value="apixaban">Apixabano</option>
+            <option value="rivaroxaban">Rivaroxabano</option><option value="dabigatran">Dabigatrano</option><option value="edoxaban">Edoxabano</option>
+          </select>
+        </div>
+        <div class="field"><label>Procedimento</label><select id="pProcedure"></select></div>
+        <label class="check"><input id="pManual" type="checkbox"> Selecionar manualmente a categoria hemorrágica</label>
+        <div class="field"><label>Categoria hemorrágica</label>
+          <select id="pRisk" disabled><option value="minor">Minor / mínima</option><option value="low">Baixa</option><option value="high">Alta</option></select>
+        </div>
+        <div class="field"><label>Data do procedimento</label>
+          <select id="pDateMode"><option value="known">Já existe data marcada</option><option value="unknown">Ainda não existe data marcada</option></select>
+        </div>
+        <div id="pKnownDateFields" class="inline">
+          <div class="field"><label>Data</label><input id="pDate" type="date"></div>
+          <div class="field"><label>Período do dia</label><select id="pPeriod"><option value="morning">Manhã</option><option value="afternoon">Tarde</option></select></div>
+        </div>
+        <div class="field"><label>Depuração da creatinina — Cockcroft–Gault (mL/min) — anticoagulantes diretos</label><input id="pCrCl" type="number" min="5" max="200" step="1"></div>
+        <div class="field"><label>Contexto trombótico — varfarina</label>
+          <select id="pThromb">
+            <option value="af">Fibrilhação auricular</option>
+            <option value="vteold">TVP/TEP há ≥3 meses</option>
+            <option value="vterecent">TVP/TEP recente (&lt;3 meses)</option>
+            <option value="mhvlow">Prótese mecânica aórtica moderna, sem fatores adicionais</option>
+            <option value="mhvhigh">Prótese mecânica mitral/tricúspide, antiga ou com fatores tromboembólicos</option>
+            <option value="otherhigh">Outra situação de risco trombótico muito elevado</option>
+          </select>
+        </div>
+        <label class="check"><input id="pBridgeConfirmed" type="checkbox"> Bridging com HBPM já foi decidido/indicado pela equipa responsável</label>
+        <button onclick="calculatePeriop()">Gerar plano</button>
+        <button class="secondary" onclick="printPeriop()">Imprimir plano para o utente</button>
+      </div>
+      <div class="card span7">
+        <h2>Plano perioperatório</h2>
+        <div id="pClass" class="result info">Selecione um procedimento. A categoria pode ser substituída manualmente.</div>
+        <div id="pResult"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATIENT CARD -->
+  <section id="printcard" class="panel">
+    <div class="grid">
+      <div class="card span5">
+        <h2>Folha de informação para o utente — outros anticoagulantes</h2>
+        <div class="field"><label>Nome (opcional)</label><input id="uName" type="text"></div>
+        <div class="field"><label>Anticoagulante</label>
+          <select id="uDrug"><option value="apixaban">Apixabano</option><option value="rivaroxaban">Rivaroxabano</option><option value="dabigatran">Dabigatrano</option><option value="edoxaban">Edoxabano</option></select>
+        </div>
+        <div class="field"><label>Dose / esquema</label><input id="uDose" type="text" placeholder="ex.: 5 mg 2x/dia"></div>
+        <div class="field"><label>Indicação (opcional)</label><input id="uInd" type="text"></div>
+                <div class="field"><label>Instruções adicionais</label><textarea id="uNotes" rows="4"></textarea></div>
+        <button onclick="previewPatientCard()">Pré-visualizar</button>
+        <button class="secondary" onclick="printPatientCard()">Imprimir</button>
+      </div>
+      <div class="card span7">
+        <h2>Pré-visualização</h2>
+        <div id="uPreview" class="result info">Preencha os dados essenciais. A folha não guarda qualquer informação.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="panel">
+    <div class="card">
+      <h2>O que foi alterado face ao Excel/procedimento</h2>
+      <ul>
+        <li><strong>Varfarina:</strong> ajuste pela dose semanal total em mg e percentagem, com esquema semanal editável.</li>
+        <li><strong>Função renal:</strong> cálculo por Cockcroft–Gault, por ser a fórmula usada nos ensaios pivotais e na maioria dos RCM dos anticoagulantes diretos; a CKD-EPI 2021 é reconhecida como alternativa mais atual para avaliação global da função renal, mas não é a fórmula de base desta ferramenta.</li>
+        <li><strong>Switch:</strong> substituída a regra genérica de INR por limiares e sobreposição próprios de apixabano, rivaroxabano, dabigatrano e edoxabano.</li>
+        <li><strong>Perioperatório:</strong> regras de interrupção/retoma atualizadas; bridging não é automático. Procedimentos neuraxiais recebem um alerta próprio e conservador.</li>
+        <li><strong>Impressão:</strong> plano perioperatório, folha geral para outros anticoagulantes e plano de varfarina com esquema semanal visual por comprimidos/frações.</li>
+        <li><strong>v0.15 — correção:</strong> no periop de varfarina com risco não-minor, a suspensão calculava 6 dias de interrupção em vez de 5 (última toma ficava 6 dias antes do procedimento; corrigido para 5 dias antes, alinhado com Kovacs et al. 2004 e a convenção "suspender 5 dias antes").</li>
+        <li><strong>v0.15 — novo:</strong> o plano semanal de varfarina passa a pedir data de início (por omissão, hoje; não permite datas passadas) e número de semanas a gerar (1–12), e cada dia da folha impressa mostra a data de calendário (dia/mês) além do dia da semana, para reduzir o risco de confusão entre semanas repetidas.</li>
+      </ul>
+      <details open>
+        <summary>Referências clínicas principais</summary>
+        <p class="small">
+          Procedimento PA-Proc 2.2.17 — Orientação do Doente Hipocoagulado, USF São Julião (base local);
+          Queensland Health, <em>Guideline for Warfarin Management in the Community</em>, atualização abril 2026;
+          KDIGO, <em>2024 Clinical Practice Guideline for the Evaluation and Management of CKD</em>;
+          fórmula de Cockcroft–Gault para depuração da creatinina;
+          CHEST, <em>Perioperative Management of Antithrombotic Therapy</em>, 2022;
+          EHRA, <em>Practical Guide on NOACs</em>, 2021;
+          ESC/EACTS, <em>Valvular Heart Disease Guidelines</em>, 2025;
+          ASRA Pain Medicine, <em>Regional Anesthesia in the Patient Receiving Antithrombotic Therapy</em>, 5.ª ed., 2025;
+          RCM/EMA de apixabano, rivaroxabano, dabigatrano e edoxabano.
+        </p>
+      </details>
+      <div class="result warn"><strong>Validação local recomendada:</strong> antes de adotar a ferramenta como instrumento institucional, rever em Conselho Técnico as divergências assinaladas em relação ao PA-Proc 2.2.17 e aprovar a versão clínica final.</div>
+    </div>
+  </section>
+</div>
+
+<div id="patientPrint"></div>
+<footer>Ferramenta local/offline · não armazena dados · USF São Julião · versão 0.15 (13/08/2026) · Desenvolvido por Diana Silva e Miguel Ribeiro</footer>
+
+<script>
+const days=["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"];
+let lastPeriopPrintHTML="";
+let lastPatientPrintHTML="";
+let lastWarfarinPrintHTML="";
+let pillSvgSeq=0;
+
+/* Estilos reaproveitados do ecrã principal, para o ficheiro autónomo exportado */
+const PRINT_STYLES=`
+.printbox{border:1px solid #555;padding:4mm;margin:4mm 0}
+table{width:100%;border-collapse:collapse;margin-top:8px}th,td{border-bottom:1px solid #d9e2de;padding:7px 6px;text-align:left;vertical-align:top}
+.timeline{border-left:3px solid #b8cec3;margin:8px 0 0 6px;padding-left:14px}.event{position:relative;margin:0 0 12px}.event:before{content:"";position:absolute;left:-20px;top:5px;width:9px;height:9px;border-radius:50%;background:#087a4b}
+.print-note{font-size:11pt;line-height:1.45}
+h1{font-size:20pt;color:#000;margin-bottom:6mm}
+h2{font-size:15pt;margin-top:7mm}
+@page{size:A4;margin:15mm}
+`;
+
+/* Ferramenta em fase de teste: o browser bloqueia window.print() dentro do
+   visualizador publicado (sandbox sem "allow-modals"). Em vez de imprimir
+   diretamente, disponibiliza-se um ficheiro HTML autónomo — pronto a abrir
+   e imprimir/guardar como PDF fora do sandbox — através da funcionalidade
+   de download do claude.ai, com alternativa direta caso a página seja
+   aberta fora desse visualizador. */
+async function baixarPlanoImprimivel(htmlConteudo, filename){
+  const doc = '<!DOCTYPE html><html lang="pt-PT"><head><meta charset="UTF-8">'
+    + '<title>' + filename.replace(/\.html$/,'') + '</title>'
+    + '<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;'
+    + 'background:#fff;margin:0;padding:10mm;color:#000;}' + PRINT_STYLES + '</style>'
+    + '</head><body>' + htmlConteudo
+    + '<script>window.onload=function(){setTimeout(function(){window.print()},300)}<' + '/script>'
+    + '</body></html>';
+
+  if(window.claude && window.claude.use){
+    try{
+      const downloads = await window.claude.use('downloads');
+      if(downloads){
+        await downloads.save({filename, data: doc});
+        return;
+      }
+    }catch(err){
+      if(err && err.code === 'declined') return;
+      console.warn('Falha ao descarregar, a tentar impressão direta:', err);
+    }
+  }
+  patientPrint.innerHTML = htmlConteudo;
+  window.print();
+}
+
+function fmt(n,d=1){return Number(n).toLocaleString("pt-PT",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function datePT(v){
+  if(!v) return "";
+  const [y,m,d]=v.split("-").map(Number);
+  return new Date(y,m-1,d).toLocaleDateString("pt-PT");
+}
+function isoDate(d){return d.toISOString().slice(0,10)}
+function dmLabel(dateStr){const [,m,d]=dateStr.split("-");return `${d}/${m}`}
+function addDays(dateStr,days){
+  const [y,m,d]=dateStr.split("-").map(Number), x=new Date(y,m-1,d); x.setDate(x.getDate()+days); return isoDate(x);
+}
+function procedureAnchor(date,period){
+  if(!date) return null;
+  const [y,m,d]=date.split("-").map(Number);
+  // Usa o início aproximado de cada período para converter intervalos em datas de forma conservadora.
+  const h=period==="afternoon"?13:8;
+  return new Date(y,m-1,d,h,0,0,0);
+}
+function dayPeriod(dt){
+  const h=dt.getHours();
+  return h<12?"de manhã":(h<19?"à tarde":"à noite");
+}
+function dateAndPeriod(dt){return `${dt.toLocaleDateString("pt-PT")} ${dayPeriod(dt)}`}
+function daysBeforeLabel(hours){const d=Math.ceil(hours/24);return `${d} ${d===1?"dia":"dias"} antes (pelo menos ${hours} horas)`}
+function daysAfterLabel(hours1,hours2=null){
+  if(hours2===null){const d=Math.ceil(hours1/24);return `${d} ${d===1?"dia":"dias"} depois (pelo menos ${hours1} horas)`}
+  return `${Math.ceil(hours1/24)} a ${Math.ceil(hours2/24)} dias depois (${hours1}–${hours2} horas)`;
+}
+function setClass(el,kind){el.className="result "+kind}
+
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active"); document.getElementById(b.dataset.tab).classList.add("active");
+}));
+document.getElementById("wTarget").addEventListener("change",e=>document.getElementById("wCustomTarget").classList.toggle("hidden",e.target.value!=="custom"));
+
+// --- WARFARIN WEEK UI
+function initWeek(container,prefix,editable=true){
+  container.innerHTML=days.map((d,i)=>`<div class="field"><label>${d}</label><input id="${prefix}${i}" type="number" min="0" max="8" step="0.25" value="0" ${editable?"":"readonly"}></div>`).join("");
+}
+function fmtSmart(n){
+  const r=Math.round(Number(n)*4)/4;
+  if(Math.abs(r-Math.round(r))<1e-9) return fmt(r,0);
+  if(Math.abs(r*2-Math.round(r*2))<1e-9) return fmt(r,1);
+  return fmt(r,2);
+}
+function fmtTabs(n){return fmtSmart(n)+" comp."}
+function doseText(n){
+  const q=Math.round(Number(n)*4)/4;
+  if(q===0) return "Não tomar";
+  const whole=Math.floor(q+1e-9), rem=Math.round((q-whole)*4);
+  const map={0:"",1:"1/4",2:"1/2",3:"3/4"};
+  if(whole===0) return `${map[rem]} comprimido`;
+  if(rem===0) return `${whole} ${whole===1?"comprimido":"comprimidos"}`;
+  return `${whole} + ${map[rem]} ${whole===1?"comprimido":"comprimidos"}`;
+}
+function stepText(quarters){
+  const n=Math.abs(quarters)/4;
+  return `${quarters<0?"−":"+"}${doseText(n).replace(/ comprimidos?$/,'')}`;
+}
+initWeek(document.getElementById("wCurrentWeek"),"wc");
+initWeek(document.getElementById("wProposedWeek"),"wp");
+(function(){
+  const todayISO=isoDate(new Date());
+  const sd=document.getElementById("wStartDate");
+  sd.value=todayISO; sd.min=todayISO;
+})();
+for(let i=0;i<7;i++){
+  document.getElementById("wc"+i).addEventListener("input",updateTWD);
+  document.getElementById("wp"+i).addEventListener("input",updateProposedTWD);
+}
+function weekVals(prefix){
+  return Array.from({length:7},(_,i)=>{
+    const el=document.getElementById(prefix+i);
+    const n=el.valueAsNumber;
+    return Number.isFinite(n)?Math.max(0,n):0;
+  });
+}
+function isQuarterDose(v){return Math.abs(v*4-Math.round(v*4))<1e-9}
+function updateTWD(){document.getElementById("wTWD").textContent=fmtTabs(weekVals("wc").reduce((a,b)=>a+b,0))}
+function updateProposedTWD(){
+  const old=weekVals("wc").reduce((a,b)=>a+b,0), neu=weekVals("wp").reduce((a,b)=>a+b,0);
+  document.getElementById("wNewTWD").textContent=fmtTabs(neu);
+  document.getElementById("wActualPct").textContent=old?((neu-old)/old*100>=0?"+":"")+fmt((neu-old)/old*100,1)+"%":"—";
+}
+function targetRange(){
+  const t=document.getElementById("wTarget").value;
+  if(t==="2-3") return [2,3];
+  if(t==="2.5-3.5") return [2.5,3.5];
+  return [Number(document.getElementById("wLow").value),Number(document.getElementById("wHigh").value)];
+}
+function pctSelect(p){document.getElementById("wPct").value=String(p)}
+function analyseWarfarin(){
+  const r=document.getElementById("wResult"), inr=Number(document.getElementById("wINR").value), bleed=document.getElementById("wBleed").value;
+  if(!inr){setClass(r,"warn");r.innerHTML="<strong>Introduza o INR atual.</strong>";return}
+  const [lo,hi]=targetRange();
+  if(!(lo>0&&hi>lo)){setClass(r,"warn");r.innerHTML="Intervalo-alvo inválido.";return}
+  const missed=document.getElementById("wMissed").checked, transient=document.getElementById("wTransient").checked;
+  const prev=Number(document.getElementById("wPrevINR").value)||null;
+  if(bleed==="major"){
+    setClass(r,"danger"); r.innerHTML="<strong>Hemorragia clinicamente significativa/órgão crítico:</strong> suspender varfarina e encaminhar urgentemente para avaliação hospitalar/reversão conforme protocolo. Não é gerado ajuste ambulatório."; return;
+  }
+  if(inr>10){
+    setClass(r,"danger"); r.innerHTML="<strong>INR &gt;10 sem hemorragia major:</strong> suspender varfarina; avaliação médica urgente no próprio dia, considerar vitamina K conforme risco/protocolo e repetir INR em 12–24 h. Não gerar novo esquema até reavaliação."; return;
+  }
+  if(inr>4.5){
+    setClass(r,"danger"); r.innerHTML="<strong>INR 4,5–10:</strong> suspender temporariamente a varfarina e procurar a causa. Sem hemorragia, a vitamina K não é habitualmente necessária; considerar se risco hemorrágico elevado. Repetir INR em 12–24 h e reiniciar com dose inferior quando se aproximar do alvo. Se houver hemorragia, escalar conforme gravidade."; return;
+  }
+  if(bleed==="minor"){
+    setClass(r,"warn"); r.innerHTML="<strong>Hemorragia ligeira:</strong> não aplicar o nomograma de manutenção de forma automática. Avaliar local da hemorragia, causa, INR e risco individual; considerar omitir a toma seguinte e repetir INR precocemente. Agravamento, persistência ou sinais sistémicos justificam referenciação."; return;
+  }
+  let pct=0, text="", oneoff="";
+  const standard=(lo===2&&hi===3);
+  if(standard){
+    if(inr<1.5){pct=20;text="Aumentar a dose semanal total em cerca de 20%."}
+    else if(inr<2){pct=10;text="Aumentar a dose semanal total em cerca de 10%."}
+    else if(inr<=3){pct=0;text="INR em alvo: manter a dose semanal."}
+    else if(inr<=3.4){
+      if(prev!==null && prev>=2 && prev<=3){pct=0;text="Elevação ligeira isolada com INR anterior em alvo: é razoável manter a dose e repetir o INR mais cedo; redução de ~10% continua a ser uma opção se houver tendência ascendente ou fatores de risco."}
+      else {pct=-10;text="Considerar redução de 10%; se resultados prévios forem estáveis, pode ser razoável manter e repetir mais cedo."}
+    }
+    else if(inr<=3.9){pct=-20;text="Se optar por omitir a toma do próprio dia, faça-o apenas de forma pontual; para o esquema de manutenção, reduza a dose semanal total em cerca de 20%.";oneoff="O esquema semanal de manutenção abaixo não incorpora um «dia sem tomar» recorrente, salvo se o ajustar manualmente."}
+    else {pct=-20;text="Reduzir cerca de 20%; ponderar omitir a próxima toma conforme sensibilidade/risco e repetir INR precocemente.";oneoff="Reiniciar o esquema de manutenção inferior quando o INR se aproximar do alvo."}
+  } else {
+    if(inr<lo-0.5){pct=20;text="INR claramente abaixo do alvo: sugestão adaptada de aumento de ~20%."}
+    else if(inr<lo){pct=10;text="INR abaixo do alvo: sugestão adaptada de aumento de ~10%."}
+    else if(inr<=hi){pct=0;text="INR em alvo: manter a dose semanal."}
+    else if(inr<=hi+0.4){
+      if(prev!==null && prev>=lo && prev<=hi){pct=0;text="INR discretamente acima do alvo após valor anterior terapêutico: considerar manter e repetir mais cedo; redução ~10% se tendência ascendente/risco."}
+      else {pct=-10;text="INR discretamente acima do alvo: considerar manter ou reduzir ~10%, conforme tendência."}
+    }
+    else {pct=-20;text="INR acima do alvo: sugestão adaptada de redução ~20%; ponderar omissão pontual conforme risco.";oneoff="Para alvos diferentes de 2–3, esta é uma adaptação do nomograma e requer validação clínica."}
+  }
+  pctSelect(pct);
+  let caut="";
+  if(missed||transient) caut=`<br><strong>Atenção:</strong> ${missed?"há adesão irregular/doses esquecidas. ":""}${transient?"há uma causa transitória plausível. ":""}Corrija a causa antes de assumir que a dose de manutenção é inadequada; um ajuste pode não ser necessário.`;
+  setClass(r,inr>=lo&&inr<=hi?"ok":"warn");
+  r.innerHTML=`<strong>${text}</strong>${oneoff?`<br>${oneoff}`:""}${caut}<br><span class="small">O valor foi colocado no seletor «Ajuste a aplicar»; pode alterá-lo antes de gerar o esquema.</span>`;
+}
+function changePatternPenalty(changes){
+  const active=changes.map((c,i)=>c>0?i:null).filter(i=>i!==null);
+  const minority=active.length<=3 ? active : [0,1,2,3,4,5,6].filter(i=>!active.includes(i));
+  if(minority.length<=1) return 0;
+  const sorted=minority.slice().sort((a,b)=>a-b), gaps=[];
+  for(let j=0;j<sorted.length;j++) gaps.push((sorted[(j+1)%sorted.length]-sorted[j]+7)%7);
+  const gm=gaps.reduce((a,b)=>a+b,0)/gaps.length;
+  const gapVariance=gaps.reduce((q,g)=>q+(g-gm)*(g-gm),0)/gaps.length;
+  let adjacency=0;
+  const m=new Set(minority);
+  for(let i=0;i<7;i++) if(m.has(i)&&m.has((i+1)%7)) adjacency++;
+  return adjacency*10+gapVariance;
+}
+function balancedScheduleScore(qNew,qOrig,changes,direction){
+  const mean=qNew.reduce((a,b)=>a+b,0)/7;
+  const variance=qNew.reduce((s,v)=>s+(v-mean)*(v-mean),0)/7;
+  const range=Math.max(...qNew)-Math.min(...qNew);
+  const spread=changes.reduce((s,c)=>s+c*c,0);
+  let newZeros=0;
+  if(direction<0){for(let i=0;i<7;i++) if(qOrig[i]>0&&qNew[i]===0)newZeros++;}
+  // Prioridade: 1) doses diárias homogéneas; 2) evitar novos dias a zero;
+  // 3) distribuir as alterações de modo regular pela semana; 4) evitar concentrar vários quartos no mesmo dia.
+  return newZeros*1e9 + variance*100000 + range*10000 + changePatternPenalty(changes)*100 + spread;
+}
+function generateWarfarinSchedule(){
+  const cur=weekVals("wc"), total=cur.reduce((a,b)=>a+b,0);
+  const pct=Number(document.getElementById("wPct").value);
+  const note=document.getElementById("wScheduleNote");
+  if(total<=0){setClass(note,"warn");note.innerHTML="Introduza primeiro o esquema semanal atual.";return}
+  const invalidDays=cur.map((v,i)=>!isQuarterDose(v)?days[i]:null).filter(Boolean);
+  if(invalidDays.length){setClass(note,"warn");note.innerHTML=`As doses devem ser introduzidas em quartos de comprimido (0,25; 0,5; 0,75; 1; 1,25; etc.). Reveja: <strong>${invalidDays.join(", ")}</strong>.`;return}
+
+  const theoreticalTotal=total*(1+pct/100);
+  const targetTotal=Math.round(theoreticalTotal*4)/4;
+  const direction=targetTotal>total?1:targetTotal<total?-1:0;
+  const stepCount=Math.abs(Math.round((targetTotal-total)*4));
+  const qOrig=cur.map(v=>Math.round(v*4));
+  let q=qOrig.slice(), changes=Array(7).fill(0);
+
+  // Cada passo equivale a 1/4 de comprimido. Em cada passo escolhe-se o dia que
+  // deixa o conjunto das 7 doses mais homogéneo. Só depois se usa o espaçamento
+  // das alterações como critério de desempate/segunda prioridade.
+  for(let step=0; step<stepCount; step++){
+    let best=null;
+    for(let i=0;i<7;i++){
+      if(direction<0 && q[i]===0) continue;
+      const qTry=q.slice(), cTry=changes.slice();
+      qTry[i]+=direction;
+      if(qTry[i]<0) continue;
+      cTry[i]++;
+      const score=balancedScheduleScore(qTry,qOrig,cTry,direction);
+      if(best===null || score<best.score-1e-9 || (Math.abs(score-best.score)<1e-9 && i<best.i)){
+        best={score,i,q:qTry,changes:cTry};
+      }
+    }
+    if(best===null) break;
+    q=best.q; changes=best.changes;
+  }
+
+  const arr=q.map(v=>v/4);
+  arr.forEach((v,i)=>{
+    const el=document.getElementById("wp"+i);
+    el.valueAsNumber=v; // evita o erro de locale: "1,25" não é válido como value de input[type=number]
+  });
+
+  // Verificação de segurança: o que ficou efetivamente nos campos tem de ser exatamente
+  // igual ao esquema calculado. Se o browser rejeitar algum valor, não mostramos um total enganador.
+  const rendered=weekVals("wp");
+  const mismatch=rendered.some((v,i)=>Math.abs(v-arr[i])>1e-9);
+  if(mismatch){
+    setClass(note,"danger");
+    note.innerHTML="<strong>Erro interno ao escrever o esquema nos campos.</strong> O esquema não foi aceite. Não utilize esta proposta; recarregue a ferramenta.";
+    document.getElementById("wNewTWD").textContent="—";
+    document.getElementById("wActualPct").textContent="—";
+    return;
+  }
+
+  updateProposedTWD();
+  const newTotal=rendered.reduce((a,b)=>a+b,0);
+  const actualPct=(newTotal-total)/total*100;
+  const targetMismatch=Math.abs(newTotal-targetTotal)>1e-9;
+  if(targetMismatch){
+    setClass(note,"danger");
+    note.innerHTML=`<strong>Erro interno de cálculo.</strong> A dose semanal gerada (${fmtTabs(newTotal)}) não corresponde ao alvo arredondado a quartos de comprimido (${fmtTabs(targetTotal)}). Não utilize esta proposta.`;
+    return;
+  }
+
+  const changed=changes.map((n,i)=>n?`${days[i]} (${direction>0?"+":"−"}${doseText(n/4).replace(/ comprimidos?$/,'')})`:null).filter(Boolean);
+  setClass(note,"info");
+  const deltaText=(newTotal-total>=0?"+":"")+fmtSmart(newTotal-total);
+  note.innerHTML=`A dose semanal foi ajustada em <strong>${deltaText} comprimidos/semana (${actualPct>=0?"+":""}${fmt(actualPct,1)}%)</strong>. O algoritmo dá prioridade a aproximar as doses dos diferentes dias entre si; quando há várias soluções equivalentes, distribui as alterações ao longo da semana. ${changed.length?`Dias modificados: ${changed.join(", ")}. `:""}<strong>Revise sempre o esquema antes de prescrever.</strong>`;
+}
+
+// --- WARFARIN PATIENT PLAN
+const patientDays=["Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado","Domingo"];
+function wholePillSvg(){
+  return `<svg class="pill-svg-round" viewBox="0 0 50 50" role="img" aria-label="1 comprimido"><defs><radialGradient id="gfull"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#ececec"/></radialGradient></defs><circle cx="25" cy="25" r="20" fill="url(#gfull)" stroke="#222" stroke-width="2"/><line x1="25" y1="8" x2="25" y2="42" stroke="#8d8d8d" stroke-width="1.4"/><line x1="8" y1="25" x2="42" y2="25" stroke="#8d8d8d" stroke-width="1.4"/></svg>`;
+}
+function halfPillSvg(){
+  return `<svg class="pill-svg-round" viewBox="0 0 50 50" role="img" aria-label="meio comprimido"><defs><radialGradient id="ghalf"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#ececec"/></radialGradient></defs><path d="M25 5 A20 20 0 0 1 25 45 L25 5 Z" fill="url(#ghalf)" stroke="#222" stroke-width="2"/><line x1="25" y1="8" x2="25" y2="42" stroke="#8d8d8d" stroke-width="1.4"/></svg>`;
+}
+function quarterPillSvg(){
+  return `<svg class="pill-svg-round" viewBox="0 0 50 50" role="img" aria-label="quarto de comprimido"><defs><radialGradient id="gquart"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#ececec"/></radialGradient></defs><path d="M25 25 L45 25 A20 20 0 0 0 25 5 Z" fill="url(#gquart)" stroke="#222" stroke-width="2"/></svg>`;
+}
+function tabletHuman(n){
+  return doseText(n);
+}
+function tabletVisual(n){
+  const q=Math.round(n*4)/4;
+  if(q===0) return `<div class="dose-human">Não tomar</div>`;
+  let icons="";
+  let whole=Math.floor(q+1e-9);
+  let rem=Math.round((q-whole)*4);
+  for(let i=0;i<whole;i++) icons+=wholePillSvg();
+  if(rem===1) icons+=quarterPillSvg();
+  if(rem===2) icons+=halfPillSvg();
+  if(rem===3) icons+=halfPillSvg()+quarterPillSvg();
+  return `<div class="pill-icons">${icons}</div><div class="dose-human">${tabletHuman(q)}</div>`;
+}
+function warfarinPatientAdvice(){
+  return `<ul class="print-note">
+    <li>Tome a varfarina todos os dias conforme o esquema desta folha, de preferência sempre à mesma hora.</li>
+    <li>Se se esquecer de uma toma e ainda for o mesmo dia, tome-a quando se lembrar. Se só se lembrar no dia seguinte, não tome a dose esquecida e continue o esquema normal. <strong>Nunca tome uma dose a dobrar.</strong></li>
+    <li>Não altere nem pare a varfarina por sua iniciativa.</li>
+    <li>Mantenha a sua alimentação habitual e equilibrada. Pode comer verduras e legumes; o importante é evitar mudanças grandes e repentinas na quantidade que costuma comer.</li>
+    <li>Antes de começar um medicamento novo, incluindo medicamentos para dores ou inflamações, produtos de ervanária ou suplementos, diga que toma varfarina.</li>
+    <li>Antes de uma cirurgia, tratamento dentário ou exame com intervenção, diga sempre que toma varfarina.</li>
+    <li>Procure ajuda médica urgente se tiver uma hemorragia que não pára, sangue nas fezes ou fezes muito escuras, sangue na urina, vómitos com sangue, uma queda com pancada forte na cabeça, dor de cabeça súbita e muito intensa, dificuldade em falar, perda de força, desmaio ou fraqueza intensa.</li>
+  </ul>`;
+}
+function buildWarfarinPatientPlan(){
+  const vals=weekVals("wp"), name=wPatientName.value.trim(), next=wNextINR.value, ind=wPatientInd.value.trim(), notes=wPatientNotes.value.trim();
+  const total=vals.reduce((a,b)=>a+b,0);
+  if(total<=0) return {error:"Gere e confirme primeiro um esquema semanal válido."};
+  const startDate=wStartDate.value;
+  if(!startDate) return {error:"Indique a data de início do esquema."};
+  const todayISO=isoDate(new Date());
+  if(startDate<todayISO) return {error:"A data de início não pode ser anterior a hoje. Corrija a data de início do esquema."};
+  let weeksN=parseInt(wWeeksCount.value,10);
+  if(!Number.isFinite(weeksN)||weeksN<1) weeksN=1;
+  if(weeksN>12){weeksN=12; wWeeksCount.value="12"}
+  const incompatible=[];
+  vals.forEach((v,i)=>{ if(Math.abs(v*4-Math.round(v*4))>0.03) incompatible.push(patientDays[i]); });
+  const head=`${name?`<p><strong>Nome:</strong> ${esc(name)}</p>`:""}<p><strong>Medicamento:</strong> Varfarina${ind?`<br><strong>Motivo do tratamento:</strong> ${esc(ind)}`:""}<br><strong>Início do esquema:</strong> ${datePT(startDate)}${next?`<br><strong>Próxima análise ao sangue:</strong> ${datePT(next)}`:""}</p>`;
+  const weekHeader=days.map(d=>`<th>${d}</th>`).join("");
+  let rows='';
+  for(let w=0; w<weeksN; w++){
+    const cells=vals.map((v,i)=>{
+      const cellDate=addDays(startDate,w*7+i);
+      const dose=Math.abs(v*4-Math.round(v*4))<=0.03?tabletVisual(Math.round(v*4)/4):`<div class="dose-human">${fmtSmart(v)} comp.</div>`;
+      return `<td><div class="schedule-dose"><div class="small" style="font-weight:750;color:#496057">${dmLabel(cellDate)}</div>${dose}</div></td>`;
+    }).join("");
+    rows+=`<tr><td class="rowhead">Semana ${w+1}</td>${cells}</tr>`;
+  }
+  const table=`<table class="schedule4w"><thead><tr><th></th>${weekHeader}</tr></thead><tbody>${rows}</tbody></table>`;
+  const body=`<h2>Como tomar durante a semana</h2><p class="small">Cada dia mostra a data (dia/mês) para evitar confundir semanas.</p>${table}<h2>Cuidados importantes</h2>${warfarinPatientAdvice()}${notes?`<div class="printbox"><strong>Outras instruções:</strong><br>${esc(notes).replace(/\n/g,"<br>")}</div>`:""}`;
+  return {html:`<h1>Plano semanal de varfarina</h1><div class="printbox">${head}</div>${body}`,preview:`<h3 style="margin-top:0">Plano semanal de varfarina</h3>${head}${body}${incompatible.length?`<div class="result warn"><strong>Atenção:</strong> há doses que não correspondem exatamente a quartos de comprimido: ${incompatible.join(", ")}.</div>`:""}`};
+}
+function previewWarfarinPatientPlan(){
+  const x=buildWarfarinPatientPlan();
+  if(x.error){setClass(wPatientPreview,"warn");wPatientPreview.innerHTML=x.error;lastWarfarinPrintHTML="";return}
+  wPatientPreview.className="result info";wPatientPreview.innerHTML=x.preview;lastWarfarinPrintHTML=x.html;
+}
+function printWarfarinPatientPlan(){
+  previewWarfarinPatientPlan(); if(!lastWarfarinPrintHTML)return;
+  baixarPlanoImprimivel(lastWarfarinPrintHTML,"plano_varfarina.html");
+}
+
+// --- DOAC
+function cockcroftGault(age,sex,weight,creat,unit){
+  if(unit==="umol") creat=creat/88.4;
+  if(!(age>=18&&weight>0&&creat>0)) return null;
+  const base=((140-age)*weight)/(72*creat);
+  return sex==="f"?base*0.85:base;
+}
+function hepaticWarning(child,drug){
+  if(child==="C") return {stop:true,msg:"Child-Pugh C: não recomendar DOAC nesta ferramenta."};
+  if(child==="B" && drug==="rivaroxaban") return {stop:true,msg:"Child-Pugh B: rivaroxabano contraindicado segundo a base local/RCM aplicável; escolher alternativa e rever função hepática."};
+  if(child==="B") return {stop:false,msg:"Child-Pugh B: usar com precaução; confirmar RCM, coagulopatia e avaliação hepática."};
+  return {stop:false,msg:""};
+}
+function doacCard(title,dose,notes,status="ok"){
+  return `<div class="result ${status}"><h3 style="margin-top:0">${title}</h3><div class="big" style="font-size:19px">${dose}</div>${notes?`<div style="margin-top:6px">${notes}</div>`:""}</div>`;
+}
+function calculateDOAC(){
+  const age=Number(dAge.value), sex=dSex.value, weight=Number(dWeight.value), creat=Number(dCr.value), c=cockcroftGault(age,sex,weight,creat,dCrUnit.value), out=document.getElementById("dResult");
+  if(c===null){setClass(dCrClBox,"warn");dCrClBox.innerHTML="Preencha idade, sexo, peso e creatinina.";out.innerHTML="";return}
+  setClass(dCrClBox,c<30?"warn":"info");
+  dCrClBox.innerHTML=`Depuração da creatinina estimada por Cockcroft–Gault: <span class="big">${fmt(c,0)} mL/min</span><br><span class="small"><strong>Nota clínica:</strong> esta ferramenta usa Cockcroft–Gault porque foi a fórmula usada nos ensaios pivotais e é a metodologia habitualmente referida nos RCM dos anticoagulantes diretos. A CKD-EPI 2021 é atualmente muito utilizada para avaliação global da função renal, mas não é a base desta ferramenta.</span>`;
+  const ind=dInd.value, drug=dDrug.value, child=dChild.value, highBleed=dHighBleed.checked, ver=dVerapamil.checked, pgp=dEdoxPgp.checked;
+  if(dMechanical.checked||dMS.checked||dLVT.checked){
+    let why=[]; if(dMechanical.checked)why.push("prótese mecânica"); if(dMS.checked)why.push("estenose mitral reumática moderada/grave"); if(dLVT.checked)why.push("trombo ventricular esquerdo");
+    out.innerHTML=`<div class="result danger"><strong>Rever escolha do anticoagulante:</strong> ${why.join(", ")}. Prótese mecânica e estenose mitral reumática moderada/grave favorecem AVK; o procedimento local também prioriza AVK no trombo ventricular esquerdo. Não é gerada uma recomendação automática de DOAC.</div>`;
+    return;
+  }
+  const wanted=drug==="all"?["apixaban","rivaroxaban","dabigatran","edoxaban"]:[drug];
+  let html="";
+  wanted.forEach(x=>{
+    const h=hepaticWarning(child,x);
+    const names={apixaban:"Apixabano",rivaroxaban:"Rivaroxabano",dabigatran:"Dabigatrano",edoxaban:"Edoxabano"};
+    if(h.stop){html+=doacCard(names[x],"Não recomendado",h.msg,"danger");return}
+    let dose="",notes=h.msg?`<strong>Fígado:</strong> ${h.msg}<br>`:"",status="ok";
+    if(x==="apixaban"){
+      if(c<15){dose="Não recomendado";notes+="TFG <15 mL/min: ausência de suporte para utilização rotineira; rever alternativa.";status="danger"}
+      else if(ind==="af"){
+        const crit=(age>=80?1:0)+(weight<=60?1:0)+((dCrUnit.value==="mg"?creat:creat/88.4)>=1.5?1:0);
+        if(c<30){dose="2,5 mg 2x/dia";notes+="TFG 15–29 mL/min em FA: dose reduzida."}
+        else if(crit>=2){dose="2,5 mg 2x/dia";notes+=`Cumpre ${crit} critérios de redução (idade ≥80, peso ≤60, creatinina ≥1,5 mg/dL).`}
+        else{dose="5 mg 2x/dia";notes+=`Cumpre ${crit}/3 critérios de redução; não reduzir apenas por um critério.`}
+      }else if(ind==="vteacute"){dose="10 mg 2x/dia durante 7 dias → 5 mg 2x/dia";notes+=c<30?"TFG 15–29: usar com precaução; não aplicar os critérios de redução da FA ao tratamento agudo de TEV.":"Não reduzir pelos critérios da FA durante o tratamento do TEV."}
+      else if(ind==="vtemaint"){dose="5 mg 2x/dia";notes+=c<30?"TFG 15–29: usar com precaução.":""}
+      else{dose="2,5 mg 2x/dia";notes+="Prevenção de recorrência após completar 6 meses de tratamento anticoagulante."}
+    }
+    if(x==="rivaroxaban"){
+      if(c<15){dose="Não recomendado";notes+="TFG <15 mL/min.";status="danger"}
+      else if(ind==="af"){dose=(c<50?"15 mg 1x/dia":"20 mg 1x/dia");notes+="Tomar com alimentos."+ (c<30?" TFG 15–29: usar com precaução.":"")}
+      else if(ind==="vteacute"){dose="15 mg 2x/dia durante 21 dias → 20 mg 1x/dia";notes+="As doses de 15/20 mg devem ser tomadas com alimentos. "+(c<30?"TFG 15–29: usar com precaução. ":"")+(c<50&&highBleed?"Após o dia 21, 15 mg id pode ser ponderado se o risco hemorrágico superar claramente o risco de recorrência; esta redução assenta em farmacocinética e não foi estudada prospectivamente.":"")}
+      else if(ind==="vtemaint"){dose="20 mg 1x/dia";notes+="Tomar com alimentos. "+(c<50&&highBleed?"Em TFG 15–49 e risco hemorrágico elevado, 15 mg id pode ser ponderado se o risco hemorrágico superar o de recorrência; redução não estudada prospectivamente.":"")}
+      else{dose="10 mg 1x/dia";notes+="Após ≥6 meses; considerar 20 mg 1x/dia se risco de recorrência for elevado. Em TFG 15–29 usar com precaução."}
+    }
+    if(x==="dabigatran"){
+      if(c<30){dose="Contraindicado";notes+="TFG <30 mL/min.";status="danger"}
+      else{
+        let reduced=(age>=80||ver), consider=(!reduced && (age>=75||c<50||highBleed));
+        dose=reduced?"110 mg 2x/dia":"150 mg 2x/dia";
+        if(reduced) notes+=age>=80?"Idade ≥80 anos: 110 mg 2x/dia. ":""; 
+        if(ver) notes+="Verapamil concomitante: 110 mg 2x/dia. ";
+        if(consider) notes+="Pode ser razoável ponderar 110 mg 2x/dia (idade 75–79, TFG 30–49 ou risco hemorrágico elevado), individualizando risco trombótico/hemorrágico. ";
+        if(ind==="vteacute"||ind==="vtemaint") notes+="No tratamento de TVP/TEP, iniciar dabigatrano apenas após pelo menos 5 dias de anticoagulação parentérica. ";
+        if(ind==="vteextended") notes+="Na prevenção de recorrência, manter a dose escolhida segundo idade/risco/renal.";
+      }
+    }
+    if(x==="edoxaban"){
+      if(c<15){dose="Não recomendado";notes+="TFG <15 mL/min.";status="danger"}
+      else{
+        const red=(c<=50||weight<=60||pgp); dose=red?"30 mg 1x/dia":"60 mg 1x/dia";
+        if(red){let rs=[];if(c<=50)rs.push("TFG 15–50");if(weight<=60)rs.push("peso ≤60 kg");if(pgp)rs.push("inibidor P-gp relevante");notes+=`Redução por: ${rs.join(", ")}. `}
+        if(ind==="vteacute"||ind==="vtemaint") notes+="No tratamento de TVP/TEP, iniciar edoxabano apenas após pelo menos 5 dias de anticoagulação parentérica. ";
+        if(ind==="af"&&c>95) notes+="TFG muito elevada: existe tendência para menor eficácia do edoxabano; confirmar adequação individual e RCM.";
+      }
+    }
+    html+=doacCard(names[x],dose,notes,status);
+  });
+  out.innerHTML=html+`<div class="small" style="margin-top:8px">Ajuste renal nesta versão baseado em Cockcroft–Gault. Interações adicionais, coagulopatia hepática, gravidez, função renal não estável e outras contraindicações não são integralmente modeladas.</div>`;
+}
+
+// --- SWITCH
+function syncSwitchFields(){
+  const show=sFrom.value==="edoxaban" && sTo.value==="vka";
+  sEdoxDoseField.classList.toggle("hidden",!show);
+  if(!show) sEdoxDose.value="60";
+}
+sFrom.addEventListener("change",syncSwitchFields);sTo.addEventListener("change",syncSwitchFields);syncSwitchFields();
+function drugName(x){return {vka:"AVK",apixaban:"apixabano",rivaroxaban:"rivaroxabano",dabigatran:"dabigatrano",edoxaban:"edoxabano",warfarin:"varfarina"}[x]||x}
+function calculateSwitch(){
+  const from=sFrom.value,to=sTo.value,ind=sInd.value,inr=Number(sINR.value),c=Number(sCrCl.value),r=document.getElementById("sResult");
+  if(from===to){setClass(r,"warn");r.innerHTML="Selecione fármacos diferentes.";return}
+  let h="";
+  if(from==="vka"&&to!=="vka"){
+    const thresholds={apixaban:2,dabigatran:2,edoxaban:2.5};
+    let thr=thresholds[to]; if(to==="rivaroxaban")thr=ind==="af"?3:2.5;
+    h=`<strong>Suspender o AVK.</strong> Iniciar ${drugName(to)} quando o INR for <strong>${to==="apixaban"||to==="dabigatran"?"< ":"≤ "}${fmt(thr,1)}</strong>.`;
+    if(inr) h+=`<br>INR indicado: <strong>${fmt(inr,1)}</strong> — ${((to==="apixaban"||to==="dabigatran")?inr<thr:inr<=thr)?"já cumpre o limiar":"aguardar e repetir INR antes de iniciar"}.`;
+  }else if(to==="vka"){
+    if(from==="apixaban"){
+      h="<strong>Iniciar o AVK e manter apixabano em simultâneo.</strong> Após pelo menos 2 dias de coadministração, medir INR imediatamente antes da próxima dose de apixabano. Manter ambos até INR ≥2,0; depois suspender apixabano.";
+    }else if(from==="rivaroxaban"){
+      h="<strong>Iniciar o AVK e manter rivaroxabano em simultâneo</strong> até INR ≥2,0. Durante a sobreposição, colher INR no vale (próximo da dose seguinte; a interferência do rivaroxabano pode elevar o INR). Após suspender rivaroxabano, o INR torna-se mais fiável ≥24 h depois da última dose.";
+    }else if(from==="dabigatran"){
+      if(!c){setClass(r,"warn");r.innerHTML="Para dabigatrano → AVK é necessária a TFG.";return}
+      if(c<30) h="TFG <30 mL/min: dabigatrano é contraindicado; transição requer avaliação individual/urgente conforme contexto.";
+      else h=`<strong>Começar o AVK ${c>=50?"3":"2"} dias antes de suspender dabigatrano.</strong> A influência do dabigatrano no INR torna a interpretação precoce menos fiável; monitorizar estreitamente durante a transição.`;
+    }else if(from==="edoxaban"){
+      const d=sEdoxDose.value, reduced=d==="60"?"30 mg":"15 mg";
+      h=`<strong>Opção oral:</strong> iniciar AVK e reduzir edoxabano de ${d} mg 1x/dia para <strong>${reduced} 1x/dia</strong> durante a sobreposição. Medir INR pelo menos semanalmente, imediatamente antes da dose de edoxabano. Suspender edoxabano quando INR estável ≥2,0.`;
+    }
+  }else{
+    h=`Suspender ${drugName(from)} e iniciar ${drugName(to)} <strong>na hora em que seria devida a dose seguinte</strong> do fármaco anterior, salvo acumulação, insuficiência renal importante, hemorragia ou outra situação que justifique intervalo individualizado.`;
+  }
+  setClass(r,"ok");r.innerHTML=h+`<hr><span class="small">Confirme sempre indicação e dose do fármaco de destino; o switch não valida automaticamente elegibilidade, interações ou função renal.</span>`;
+}
+
+// --- PROCEDURES
+const procedures=[
+ {id:"dental13",name:"Exodontia de 1–3 dentes",risk:"minor"},
+ {id:"periodontal",name:"Cirurgia periodontal / drenagem de abcesso / implante dentário simples",risk:"minor"},
+ {id:"cataract",name:"Cirurgia de catarata ou glaucoma",risk:"minor"},
+ {id:"endo0",name:"Endoscopia digestiva sem biópsia",risk:"minor"},
+ {id:"derm",name:"Cirurgia dermatológica superficial",risk:"minor"},
+ {id:"colono0",name:"Colonoscopia diagnóstica sem intervenção",risk:"minor"},
+ {id:"endobiopsy",name:"Endoscopia com biópsia simples",risk:"low"},
+ {id:"urobiopsy",name:"Biópsia vesical ou prostática",risk:"low"},
+ {id:"angio",name:"Angiografia não coronária",risk:"low"},
+ {id:"ep",name:"Estudo eletrofisiológico / ablação simples",risk:"low",special:"ep"},
+ {id:"device",name:"Implantação de pacemaker / CDI",risk:"low",special:"device"},
+ {id:"polyp",name:"Polipectomia / resseção endoscópica complexa",risk:"high"},
+ {id:"ercp",name:"CPRE com esfinterotomia / endoscopia terapêutica complexa",risk:"high"},
+ {id:"neuraxial",name:"Punção lombar / anestesia espinhal ou epidural",risk:"high",special:"neuraxial"},
+ {id:"major",name:"Cirurgia torácica, abdominal ou ortopédica major",risk:"high"},
+ {id:"organbiopsy",name:"Biópsia hepática ou renal",risk:"high"},
+ {id:"turp",name:"Resseção prostática transuretral",risk:"high"},
+ {id:"litho",name:"Litotrícia",risk:"high"},
+ {id:"other",name:"Outro procedimento — classificar manualmente",risk:"low",special:"manual"}
+];
+pProcedure.innerHTML=procedures.map(p=>`<option value="${p.id}">${p.name}</option>`).join("");
+function selectedProc(){return procedures.find(x=>x.id===pProcedure.value)}
+function syncProc(){
+ const p=selectedProc(); if(!p)return;
+ if(!pManual.checked){pRisk.value=p.risk}
+ pRisk.disabled=!pManual.checked;
+ const labels={minor:"Minor / mínima",low:"Baixa",high:"Alta"};
+ const used=pManual.checked?pRisk.value:p.risk;
+ setClass(pClass,used==="high"?"warn":"info");
+ pClass.innerHTML=`Classificação automática: <strong>${labels[p.risk]}</strong>. ${pManual.checked?`Categoria usada no cálculo (manual): <strong>${labels[used]}</strong>. `:""}${p.special==="manual"?"Ative a classificação manual e selecione a categoria correta.":""}${p.special==="neuraxial"?" Procedimento neuraxial: aplicam-se intervalos específicos mais conservadores.":""}`;
+}
+pProcedure.addEventListener("change",syncProc);pManual.addEventListener("change",syncProc);pRisk.addEventListener("change",syncProc);syncProc();
+function syncPeriopDateMode(){pKnownDateFields.classList.toggle("hidden",pDateMode.value!=="known")}
+pDateMode.addEventListener("change",syncPeriopDateMode);syncPeriopDateMode();
+
+function holdHours(drug,risk,c){
+ if(risk==="minor") return 0;
+ if(drug==="dabigatran"){
+   if(c<30)return null;
+   if(risk==="low"){if(c>=80)return 24;if(c>=50)return 36;return 48}
+   if(risk==="high"){if(c>=80)return 48;if(c>=50)return 72;return 96}
+ }
+ if(c<15)return null;
+ if(risk==="low") return c<30?36:24;
+ if(risk==="high") return c<30?72:48;
+}
+function calculatePeriop(){
+  lastPeriopPrintHTML="";
+  const drug=pDrug.value,proc=selectedProc(),risk=pRisk.value,dateMode=pDateMode.value,date=pDate.value,period=pPeriod.value,c=Number(pCrCl.value),th=pThromb.value,bridge=pBridgeConfirmed.checked,out=pResult;
+  const known=dateMode==="known";
+  if(known&&!date){out.innerHTML=`<div class="result warn">Indique a data do procedimento.</div>`;return}
+  let html="",printEvents=[],advice="";
+  const riskLabel={minor:"minor/mínimo",low:"baixo",high:"alto"}[risk];
+  const procWhen=known?`${datePT(date)} (${period==="morning"?"manhã":"tarde"})`:"data ainda não marcada";
+  if(proc.special==="ep"||proc.special==="device"){
+    advice+=`<div class="result warn"><strong>Procedimento com protocolos próprios:</strong> ${esc(proc.name)} pode frequentemente ser realizado com estratégias de anticoagulação não interrompida ou minimamente interrompida. Confirme as instruções da equipa de Cardiologia/Eletrofisiologia; a categoria genérica abaixo é apenas um fallback.</div>`;
+  }
+  if(drug==="warfarin"){
+    if(risk==="minor"){
+      html=`<div class="result ok"><strong>Em regra, manter varfarina.</strong> Confirmar que a análise da coagulação está dentro do intervalo terapêutico e aplicar as medidas locais de controlo de hemorragia. Não fazer bridging.</div>`;
+      printEvents=known?[["Até ao procedimento","Continuar a tomar varfarina conforme o esquema habitual, salvo indicação diferente do médico."],[procWhen,"Realizar o procedimento e dizer à equipa que toma varfarina."],["Depois do procedimento","Continuar o esquema habitual se a hemorragia estiver controlada."]]:[["Antes do procedimento","Continuar a tomar varfarina conforme o esquema habitual, salvo indicação diferente do médico."],["No dia do procedimento","Dizer à equipa que toma varfarina."],["Depois do procedimento","Continuar o esquema habitual se a hemorragia estiver controlada."]];
+    }else{
+      let bridgeTxt="";
+      if(th==="af") bridgeTxt="<strong>Heparina de substituição:</strong> não fazer bridging de rotina em fibrilhação auricular.";
+      else if(th==="vteold") bridgeTxt="<strong>Heparina de substituição:</strong> não fazer bridging de rotina; individualizar se existirem outros fatores trombóticos de alto risco.";
+      else if(th==="vterecent") bridgeTxt="<strong>Risco trombótico elevado:</strong> tromboembolismo venoso há menos de 3 meses. Se o procedimento for eletivo, ponderar adiamento; a decisão de bridging deve ser individualizada.";
+      else if(th==="mhvlow") bridgeTxt="<strong>Prótese mecânica aórtica moderna sem fatores adicionais:</strong> interrupção sem bridging pode ser considerada; confirmar tipo de prótese e orientação cardiológica.";
+      else bridgeTxt="<strong>Risco trombótico muito elevado/prótese mecânica de maior risco:</strong> bridging pode estar indicado; confirmar individualmente.";
+      if(known){
+        const stopDate=addDays(date,-4),lastDate=addDays(date,-5),restart1=addDays(date,1);
+        html=`<div class="result ok"><strong>Suspender varfarina a partir de ${datePT(stopDate)}.</strong><br>Última toma habitual, em regra, em ${datePT(lastDate)}. Confirmar análise da coagulação antes do procedimento conforme exigência da equipa.</div>
+        <div class="result ${th==="vterecent"||th==="mhvhigh"||th==="otherhigh"?"warn":"info"}">${bridgeTxt}</div>
+        <div class="result info"><strong>Recomeço:</strong> reiniciar a dose habitual na noite do procedimento ou no dia seguinte (${datePT(restart1)}), apenas quando a hemorragia estiver controlada e a equipa concordar.</div>`;
+        printEvents=[
+          [datePT(lastDate),"Tomar a última dose habitual de varfarina, salvo indicação diferente do médico."],
+          [datePT(stopDate),"A partir deste dia, NÃO tomar varfarina."],
+          [`${datePT(addDays(date,-1))} / ${procWhen}`,"Fazer a análise da coagulação se tiver sido pedida e levar o resultado."],
+          [procWhen,"Realizar o procedimento e dizer à equipa que toma varfarina."],
+          [`${datePT(date)}–${datePT(restart1)}`,"Voltar a tomar varfarina apenas quando o médico/equipa disser que a hemorragia está controlada."]
+        ];
+        if(bridge){
+          const startB=addDays(date,-3),lastB=addDays(date,-1);
+          html+=`<div class="result warn"><strong>Bridging já confirmado:</strong> a heparina de baixo peso molecular deve seguir uma prescrição específica. Habitualmente inicia quando a anticoagulação pela varfarina já é insuficiente e a última dose terapêutica deve respeitar o intervalo definido antes do procedimento.</div>`;
+          printEvents.splice(2,0,[datePT(startB),"Iniciar a heparina de substituição apenas conforme a prescrição que lhe foi entregue."],[datePT(lastB),"Fazer a última dose de heparina apenas no horário indicado pelo médico."]);
+        }
+      }else{
+        html=`<div class="result ok"><strong>Sem data marcada:</strong> quando a data for conhecida, em regra suspender varfarina <strong>4 dias antes</strong> (última toma habitual 5 dias antes).</div><div class="result ${th==="vterecent"||th==="mhvhigh"||th==="otherhigh"?"warn":"info"}">${bridgeTxt}</div><div class="result info"><strong>Recomeço:</strong> habitualmente no próprio dia ou 1 dia depois, apenas quando a hemorragia estiver controlada e a equipa autorizar.</div>`;
+        printEvents=[["5 dias antes","Tomar a última dose habitual de varfarina, salvo indicação diferente do médico."],["4 dias antes","A partir deste dia, NÃO tomar varfarina."],["1 dia antes / no dia","Fazer a análise da coagulação se tiver sido pedida e dizer à equipa que toma varfarina."],["No próprio dia ou 1 dia depois","Voltar a tomar varfarina apenas quando o médico/equipa disser que a hemorragia está controlada."]];
+        if(bridge) printEvents.splice(2,0,["Cerca de 3 dias antes","Iniciar a heparina de substituição apenas conforme prescrição específica. A última dose antes do procedimento deve ser indicada pelo médico."]);
+      }
+    }
+  }else{
+    if(!c){out.innerHTML=advice+`<div class="result warn">Indique a TFG para calcular a interrupção do anticoagulante.</div>`;return}
+    if(proc.special==="neuraxial"){
+      let h;
+      if(drug==="dabigatran"){h=c>=50?72:(c>=30?120:null)} else h=c>=15?72:null;
+      if(h===null){out.innerHTML=advice+`<div class="result danger">Função renal incompatível com uma recomendação segura para este anticoagulante. Rever terapêutica e articular com Anestesiologia.</div>`;return}
+      if(known){
+        const anchor=procedureAnchor(date,period), last=new Date(anchor.getTime()-h*3600000);
+        html=`<div class="result danger"><strong>Punção lombar / anestesia espinhal ou epidural:</strong> aplicar recomendações específicas da Anestesiologia. A última toma deve ocorrer <strong>até ${dateAndPeriod(last)}</strong>. Depois, suspender até ao procedimento.<br><strong>Recomeço:</strong> depende do procedimento e de eventual cateter; não é gerado automaticamente.</div>`;
+        printEvents=[[dateAndPeriod(last),`Fazer a última toma de ${drugName(drug)} até este período. Depois, NÃO tomar.`],[procWhen,"Realizar o procedimento e dizer à equipa que toma um anticoagulante."],["Depois do procedimento","Não voltar a tomar o anticoagulante até a equipa de Anestesiologia indicar quando deve recomeçar."]];
+      }else{
+        html=`<div class="result danger"><strong>Sem data marcada — procedimento neuraxial:</strong> suspender ${drugName(drug)} ${daysBeforeLabel(h)}. O recomeço deve ser definido pela Anestesiologia.</div>`;
+        printEvents=[[daysBeforeLabel(h),`Fazer a última toma de ${drugName(drug)} e depois não tomar até ao procedimento.`],["No dia do procedimento","Dizer à equipa que toma um anticoagulante."],["Depois do procedimento","Não recomeçar até a equipa de Anestesiologia indicar quando deve voltar a tomar."]];
+      }
+    }else if(risk==="minor"){
+      html=`<div class="result ok"><strong>Sem interrupção prolongada.</strong> Planear o procedimento próximo do período de menor efeito do fármaco; pode ser necessário omitir apenas a toma imediatamente anterior. Retomar quando a hemorragia estiver controlada. <strong>Sem bridging com heparina.</strong></div>`;
+      printEvents=known?[["Antes do procedimento",`Continuar ${drugName(drug)}; o médico pode indicar que não tome apenas a toma imediatamente anterior.`],[procWhen,"Realizar o procedimento e dizer à equipa que toma um anticoagulante."],["Depois do procedimento","Voltar ao esquema habitual quando o médico/equipa confirmar que a hemorragia está controlada."]]:[["Antes do procedimento",`Continuar ${drugName(drug)}; o médico pode indicar que não tome apenas a toma imediatamente anterior.`],["No dia do procedimento","Dizer à equipa que toma um anticoagulante."],["Depois do procedimento","Voltar ao esquema habitual quando o médico/equipa confirmar que a hemorragia está controlada."]];
+    }else{
+      const h=holdHours(drug,risk,c);
+      if(h===null){out.innerHTML=advice+`<div class="result danger">Não é possível recomendar este anticoagulante com a TFG indicada. Rever anticoagulação.</div>`;return}
+      const restart1=risk==="low"?24:48, restart2=risk==="low"?null:72;
+      if(known){
+        const anchor=procedureAnchor(date,period), last=new Date(anchor.getTime()-h*3600000);
+        const r1=new Date(anchor.getTime()+restart1*3600000), r2=restart2?new Date(anchor.getTime()+restart2*3600000):null;
+        const restartText=r2?`${r1.toLocaleDateString("pt-PT")} a ${r2.toLocaleDateString("pt-PT")}`:r1.toLocaleDateString("pt-PT");
+        html=`<div class="result ok"><strong>Última toma até ${dateAndPeriod(last)}.</strong> Depois, suspender até ao procedimento (${daysBeforeLabel(h)}).<br>Recomeçar ${r2?`entre ${restartText}`:`a partir de ${restartText}`}, apenas quando a hemorragia estiver controlada e a equipa concordar. <strong>Não fazer bridging com heparina.</strong></div>`;
+        printEvents=[[dateAndPeriod(last),`Fazer a última toma de ${drugName(drug)} até este período. Depois, NÃO tomar.`],[procWhen,"Realizar o procedimento e dizer à equipa que toma um anticoagulante."],[r2?`${r1.toLocaleDateString("pt-PT")}–${r2.toLocaleDateString("pt-PT")}`:r1.toLocaleDateString("pt-PT"),`Voltar a tomar ${drugName(drug)} apenas quando o médico/equipa confirmar que a hemorragia está controlada.`]];
+      }else{
+        const restart=restart2?daysAfterLabel(restart1,restart2):daysAfterLabel(restart1);
+        html=`<div class="result ok"><strong>Sem data marcada:</strong> suspender ${drugName(drug)} ${daysBeforeLabel(h)}. Recomeçar ${restart}, apenas quando a hemorragia estiver controlada. <strong>Não fazer bridging com heparina.</strong></div>`;
+        printEvents=[[daysBeforeLabel(h),`Fazer a última toma de ${drugName(drug)} e depois não tomar até ao procedimento.`],["No dia do procedimento","Dizer à equipa que toma um anticoagulante."],[restart,`Voltar a tomar ${drugName(drug)} apenas quando o médico/equipa confirmar que a hemorragia está controlada.`]];
+      }
+    }
+  }
+  out.innerHTML=advice+html;
+  lastPeriopPrintHTML=buildPeriopPrint(proc,drug,known?date:null,known?period:null,printEvents);
+}
+function buildPeriopPrint(proc,drug,date,period,events){
+  return `<h1>Plano da medicação para o procedimento</h1>
+  <div class="printbox"><strong>Medicamento:</strong> ${esc(drugName(drug))}<br><strong>Procedimento:</strong> ${esc(proc.name)}<br><strong>Data:</strong> ${date?`${datePT(date)} — ${period==="morning"?"manhã":"tarde"}`:"ainda não marcada"}</div>
+  <h2>O que deve fazer</h2><div class="timeline">${events.map(e=>`<div class="event"><strong>${esc(e[0])}</strong><br>${esc(e[1])}</div>`).join("")}</div>
+  <div class="printbox"><strong>Importante:</strong> se a data do procedimento mudar, se tiver uma hemorragia, ficar doente ou houver alteração dos seus medicamentos, contacte a sua equipa de saúde. Diga sempre ao médico, dentista ou enfermeiro que toma um medicamento para tornar o sangue menos propenso a formar coágulos.</div>`;
+}
+function printPeriop(){
+  lastPeriopPrintHTML="";
+  calculatePeriop();
+  if(!lastPeriopPrintHTML){alert("Preencha os dados e gere um plano válido antes de imprimir.");return}
+  baixarPlanoImprimivel(lastPeriopPrintHTML,"plano_periop.html");
+}
+
+// --- PATIENT INFO
+function missedDoseText(drug,dose){
+ if(drug==="apixaban") return "Se se esquecer de uma toma, tome-a assim que se lembrar e depois continue nos horários habituais. Não tome uma dose extra para compensar.";
+ if(drug==="dabigatran") return "Se se esquecer de uma toma, só a deve tomar se faltarem mais de 6 horas para a próxima. Se faltarem 6 horas ou menos, não tome a dose esquecida. Nunca tome uma dose a dobrar.";
+ if(drug==="edoxaban") return "Se se esquecer de uma toma, tome-a assim que se lembrar no próprio dia. No dia seguinte continue no horário habitual. Nunca tome uma dose a dobrar.";
+ if(drug==="rivaroxaban"){
+   if(/15\s*mg.*2|2x|duas/i.test(dose)) return "Se estiver a tomar 15 mg duas vezes por dia nos primeiros 21 dias do tratamento e se esquecer de uma toma, tome-a assim que se lembrar para completar 30 mg nesse dia. Pode ser necessário tomar dois comprimidos de 15 mg ao mesmo tempo. No dia seguinte volte ao esquema habitual.";
+   return "Se toma uma vez por dia e se esquecer, tome a dose assim que se lembrar no próprio dia. No dia seguinte continue no horário habitual. Não tome uma dose a dobrar no dia seguinte.";
+ }
+ return "Se se esquecer de uma toma, contacte a sua equipa de saúde se tiver dúvidas sobre o que fazer.";
+}
+function patientAdvice(drug,dose){
+ let extra="<li>Faça as análises ao sangue pedidas pelo médico para verificar os rins e outros parâmetros importantes.</li><li>Não pare este medicamento por sua iniciativa.</li>";
+ if(drug==="rivaroxaban" && /15\s*mg|20\s*mg/i.test(dose)) extra+="<li>Rivaroxabano de 15 mg ou 20 mg deve ser tomado com comida.</li>";
+ if(drug==="dabigatran") extra+="<li>Engula as cápsulas inteiras. Não abra, esmague ou mastigue as cápsulas.</li>";
+ return `<ul class="print-note">
+ <li>Tome o medicamento todos os dias exatamente como foi indicado.</li>
+ <li>${missedDoseText(drug,dose)}</li>
+ <li>Antes de começar um medicamento novo, incluindo medicamentos para dores ou inflamações, aspirina, produtos de ervanária ou suplementos, diga que toma um anticoagulante.</li>
+ <li>Evite beber álcool em excesso.</li>
+ <li>Antes de uma cirurgia, tratamento dentário ou exame com intervenção, diga sempre que toma um anticoagulante.</li>
+ ${extra}
+ <li>Procure ajuda médica urgente se tiver uma hemorragia que não pára, sangue nas fezes ou fezes muito escuras, sangue na urina, vómitos com sangue, uma queda com pancada forte na cabeça, dor de cabeça súbita e muito intensa, dificuldade em falar, perda de força, desmaio ou fraqueza intensa.</li>
+ </ul>`;
+}
+function previewPatientCard(){
+ const name=uName.value.trim(),drug=uDrug.value,dose=uDose.value.trim(),ind=uInd.value.trim(),notes=uNotes.value.trim();
+ if(!dose){setClass(uPreview,"warn");uPreview.innerHTML="Indique a dose/esquema.";return}
+ const html=`<h3 style="margin-top:0">Informação sobre ${esc(drugName(drug))}</h3>
+ ${name?`<p><strong>Utente:</strong> ${esc(name)}</p>`:""}
+ <p><strong>Dose/esquema:</strong> ${esc(dose)}${ind?`<br><strong>Motivo:</strong> ${esc(ind)}`:""}</p>
+ ${patientAdvice(drug,dose)}
+ ${notes?`<div class="result info"><strong>Instruções adicionais:</strong><br>${esc(notes).replace(/\n/g,"<br>")}</div>`:""}`;
+ uPreview.className="result info";uPreview.innerHTML=html;
+ lastPatientPrintHTML=`<h1>O meu anticoagulante</h1><div class="printbox">${name?`<strong>Nome:</strong> ${esc(name)}<br>`:""}<strong>Medicamento:</strong> ${esc(drugName(drug))}<br><strong>Dose/esquema:</strong> ${esc(dose)}${ind?`<br><strong>Motivo do tratamento:</strong> ${esc(ind)}`:""}</div><h2>Cuidados importantes</h2>${patientAdvice(drug,dose)}${notes?`<div class="printbox"><strong>Instruções da equipa:</strong><br>${esc(notes).replace(/\n/g,"<br>")}</div>`:""}<p class="print-note"><strong>Em caso de dúvida, contacte a sua equipa de saúde antes de alterar ou parar a medicação.</strong></p>`;
+}
+function printPatientCard(){
+ previewPatientCard(); if(!lastPatientPrintHTML)return;
+ baixarPlanoImprimivel(lastPatientPrintHTML,"cartao_anticoagulacao.html");
+}
+</script>
+</body>
+</html>

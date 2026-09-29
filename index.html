@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferramentas Clínicas — USF São Julião</title>
+<style>
+  :root{
+    --green: #0a6b45;
+    --green-dark: #084f34;
+    --mint: #eaf6f0;
+    --red: #c00000;
+    --ink: #16211c;
+    --muted: #5c6d66;
+    --paper: #f6f8f7;
+    --card: #ffffff;
+    --line: #dde6e1;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --green: #35b380;
+      --green-dark: #7fe0b4;
+      --mint: #10241c;
+      --red: #ff6b6b;
+      --ink: #eef3f0;
+      --muted: #9fb0a8;
+      --paper: #101613;
+      --card: #171f1b;
+      --line: #263129;
+    }
+  }
+  :root[data-theme="dark"]{
+    --green: #35b380;
+    --green-dark: #7fe0b4;
+    --mint: #10241c;
+    --red: #ff6b6b;
+    --ink: #eef3f0;
+    --muted: #9fb0a8;
+    --paper: #101613;
+    --card: #171f1b;
+    --line: #263129;
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 64px;
+  }
+  .identity{
+    padding: 18px 0 14px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .identity .mark{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--green);
+    position: relative;
+    flex: none;
+  }
+  .identity .mark::before, .identity .mark::after{
+    content: "";
+    position: absolute;
+    background: var(--card);
+  }
+  .identity .mark::before{ width: 10px; height: 2px; top: 9px; left: 5px; }
+  .identity .mark::after{ width: 2px; height: 10px; top: 5px; left: 9px; }
+
+  header{ padding: 40px 0 32px; }
+  h1{
+    font-size: clamp(28px, 4.5vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  .lede{
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .list{
+    display: flex;
+    flex-direction: column;
+  }
+  .row{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-top: 1px solid var(--line);
+    padding: 22px 0 22px 18px;
+    position: relative;
+    transition: padding-left 120ms ease;
+  }
+  .list .row:last-child{ border-bottom: 1px solid var(--line); }
+  .row::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 22px;
+    bottom: 22px;
+    width: 3px;
+    background: var(--green);
+    border-radius: 2px;
+  }
+  .row:hover{ padding-left: 24px; }
+  .row-top{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .row-title{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .row-title .icon{
+    margin-right: 10px;
+    filter: grayscale(0.15);
+  }
+  .status{
+    font-size: 12.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .status.pending{ color: var(--red); font-weight: 600; }
+  .row-desc{
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 14.5px;
+    max-width: 62ch;
+  }
+
+  footer{
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  footer .name{ color: var(--ink); font-weight: 600; }
+  footer p{ margin: 6px 0; }
+  footer .disclaimer{
+    margin-top: 14px;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="identity">
+    <span class="mark" aria-hidden="true"></span>
+    USF São Julião da Figueira · ULS Baixo Mondego
+  </div>
+
+  <header>
+    <h1>Ferramentas clínicas</h1>
+    <p class="lede">Calculadoras e apoios de decisão em fase de teste. Abra qualquer uma abaixo — se encontrar um erro ou tiver uma sugestão de melhoria, diga-me diretamente.</p>
+  </header>
+
+  <div class="list">
+
+    <a class="row" href="anticoagulacao.html">
+      <div class="row-top">
+        <p class="row-title"><span class="icon">🩸</span>Anticoagulação Oral</p>
+        <span class="status pending">v0.15 · pendente de aprovação em Conselho Técnico</span>
+      </div>
+      <p class="row-desc">Apoio à decisão em INR/varfarina, dose de DOAC, switch entre anticoagulantes e gestão periopratória.</p>
+    </a>
+
+    <a class="row" href="pediatrica.html">
+      <div class="row-top">
+        <p class="row-title"><span class="icon">👶</span>Calculadora Pediátrica</p>
+        <span class="status">v2.11.5 · auditada, em teste</span>
+      </div>
+      <p class="row-desc">Cálculo de doses pediátricas com cerca de 65 regras clínicas.</p>
+    </a>
+
+    <a class="row" href="gravidez.html">
+      <div class="row-top">
+        <p class="row-title"><span class="icon">🤰</span>Calendário de Vigilância da Gravidez</p>
+        <span class="status">em teste</span>
+      </div>
+      <p class="row-desc">Calendário de consultas e exames de vigilância ao longo da gravidez.</p>
+    </a>
+
+    <a class="row" href="comparador-medicamentos.html">
+      <div class="row-top">
+        <p class="row-title"><span class="icon">💊</span>Apoio à Prescrição</p>
+        <span class="status">em teste</span>
+      </div>
+      <p class="row-desc">Comparador de medicamentos — interações, aleitamento/gravidez e custos.</p>
+    </a>
+
+    <a class="row" href="esquema-terapeutico.html">
+      <div class="row-top">
+        <p class="row-title"><span class="icon">📋</span>Esquema Terapêutico</p>
+        <span class="status">em teste</span>
+      </div>
+      <p class="row-desc">Esquema de medicação simplificado para doentes idosos.</p>
+    </a>
+
+  </div>
+
+  <footer>
+    <p class="name">Miguel Ribeiro</p>
+    <p>Medicina Geral e Familiar · USF São Julião da Figueira</p>
+    <p class="disclaimer">Ferramentas de apoio à decisão clínica — não substituem o julgamento clínico. Página não indexada; apenas acessível a quem recebe o link.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
